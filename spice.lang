@@ -3,7 +3,7 @@
 
 <metadata>
   <property name="mimetypes">text/x-sp;text/x-spsrc</property>
-  <property name="globs">*.sp</property>
+  <property name="globs">*.sp;*.net;*.sub;*.cir</property>
 </metadata>
     <styles>
       <style id="comment" _name="Comment" map-to="def:comment"/>
