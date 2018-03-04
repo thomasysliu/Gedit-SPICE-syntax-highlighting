@@ -1,8 +1,0 @@
-Syntax highlighting for SPICE files in gEDA
-
-
-INSTALLATION:
-Copy the file spice.lang to the appropriate directory
-(usually /usr/share/gtksourceview-3.0/language-specs/spice.lang 
-or similar), then restart gEDIT. Your .net and .sub and .cir files
-should automatically get the SPICE highlighting.
