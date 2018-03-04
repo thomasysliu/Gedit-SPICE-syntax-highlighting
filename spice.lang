@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language id="spice" _name="SPICE" version="2.0" _section="Sources">
+<language id="spice" _name="SPICE" version="2.0" _section="Source">
 	<metadata>
 		<property name="mimetypes">text/x-sp;text/x-spsrc</property>
-		<property name="globs">*.sp;*.net;*.sub;*.cir</property>
+		<property name="globs">*.sp;*.net;*.sub;*.cir;*.ckt;*.cdl;*.mdl;*.mod;*.scs;*.spi</property>
 	</metadata>
 
 	<styles>
