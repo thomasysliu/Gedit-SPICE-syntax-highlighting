@@ -25,14 +25,23 @@
 				<define-regex id="prefix">[a-zA-Z_][a-zA-Z0-9._-]*</define-regex>
 				<define-regex id="name">[a-zA-Z_][a-zA-Z0-9.:_-]*</define-regex>
 
+				<!-- Comments -->
 				<context id="comment" style-ref="comment">
-					<start>\*</start>
+					<start>(\*|\;|\$)</start>
 					<end>$</end>
+
+					<include>
+						<context id="net-address" style-ref="net-address" extend-parent="false">
+							<match>(http(s)?|ftp):\/\/[^\s]*</match>
+						</context>
+					</include>
 				</context>
 
-				<context id="string" end-at-line-end="true" style-ref="string">
-					<start>"</start>
-					<end>"</end>
+				<!-- Parameter Value -->
+				<context id="param-value" end-at-line-end="true" style-ref="string">
+					<start>("|'|{|\[|\()</start>
+					<end>("|'|}|\]|\))</end>
+
 					<include>
 						<context id="escaped-character" style-ref="escaped-character">
 							<match>\\.</match>
@@ -40,76 +49,112 @@
 					</include>
 				</context>
 
-				<context id="char" end-at-line-end="true" style-ref="char">
-					<start>'</start>
-					<end>'</end>
-					<include>
-						<context ref="escaped-character" />
-					</include>
-				</context>
-
+				<!-- Numbers -->
 				<context ref="def:decimal" />
 				<context ref="def:float" />
 
+				<!-- Attribute Names -->
 				<context id="attribute-name" style-ref="attribute-name" class="no-spell-check">
 					<match>\b\%{name}\s*=</match>
 				</context>
 
-				<context id="keywords" style-ref="keyword">
+				<!-- Simulation Commands -->
+				<context id="sim-commands" style-ref="keyword">
 					<prefix>^\.</prefix>
-					<keyword>if</keyword>
-					<keyword>else</keyword>
-					<keyword>for</keyword>
 					<keyword>subckt</keyword>
+					<keyword>model</keyword>
 					<keyword>tran</keyword>
-					<keyword>end</keyword>
-					<keyword>op</keyword>
-					<keyword>ends</keyword>
 					<keyword>temp</keyword>
+					<keyword>ac</keyword>
+					<keyword>dc</keyword>
+					<keyword>four</keyword>
+					<keyword>disto</keyword>
+					<keyword>sens</keyword>
+					<keyword>noise</keyword>
+					<keyword>tf</keyword>
+					<keyword>pz</keyword>
+					<keyword>op</keyword>
 					<keyword>option</keyword>
+					<keyword>ends</keyword>
 				</context>
 
-				<context id="types" style-ref="type">
-					<keyword>^x\w*</keyword>
-					<keyword>^c\w*</keyword>
-					<keyword>^r\w*</keyword>
-					<keyword>^m\w*</keyword>
+				<!-- Sources -->
+				<context id="sources" style-ref="type">
 					<keyword>^v\w*</keyword>
-					<keyword>float</keyword>
-					<keyword>int</keyword>
-					<keyword>long</keyword>
-					<keyword>short</keyword>
-					<keyword>signed</keyword>
-					<keyword>static</keyword>
-					<keyword>struct</keyword>
-					<keyword>typedef</keyword>
-					<keyword>union</keyword>
-					<keyword>unsigned</keyword>
-					<keyword>void</keyword>
+					<keyword>^i\w*</keyword>
+				</context>
+				
+				<!-- Switch Source (had to be separated because of conflicts with sin and sffm. -->
+				<context id="sources-switch" style-ref="type">
+					<match>^(S|s)\w+\s</match>
+				</context>
+				
+				<!-- Passive Components -->
+				<context id="passives" style-ref="type">
+					<keyword>^r\w*</keyword>
+					<keyword>^c\w*</keyword>
+					<keyword>^l\w*</keyword>
+					<keyword>^k\w*</keyword>
+					<keyword>^y\w*</keyword>
+					<keyword>^t\w*</keyword>
+				</context>
+				
+				<!-- Active Components -->
+				<context id="actives" style-ref="type">
+					<keyword>^d\w*</keyword>
+					<keyword>^q\w*</keyword>
+					<keyword>^m\w*</keyword>
+					<keyword>^j\w*</keyword>
+					<keyword>^x\w*</keyword>
 				</context>
 
-				<context id="preprocessor" style-ref="preprocessor">
+				<!-- Commands -->
+				<context id="commands" style-ref="preprocessor">
 					<prefix>.</prefix>
 					<keyword>include</keyword>
 					<keyword>lib</keyword>
-					<keyword>if(n?def)?</keyword>
-					<keyword>hdl</keyword>
-					<keyword>elif</keyword>
-					<keyword>endif</keyword>
+					<keyword>param</keyword>
+					<keyword>print</keyword>
+					<keyword>plot</keyword>
+					<keyword>probe</keyword>
+					<keyword>nodeset</keyword>
+					<keyword>ic</keyword>
+					<keyword>end</keyword>
 				</context>
-
-				<context id="if0-comment" style-ref="comment">
-					<start>^#if 0\b</start>
-					<end>^#(endif|else|elif)\b</end>
-					<include>
-						<context id="if-in-if0">
-							<start>^#if(n?def)?\b</start>
-							<end>^#endif\b</end>
-							<include>
-								<context ref="if-in-if0" />
-							</include>
-						</context>
-					</include>
+				
+				<!-- Functions -->
+				<context id="functions" style-ref="escaped-character">
+					<keyword>abs</keyword>
+					<keyword>acos</keyword>
+					<keyword>asin</keyword>
+					<keyword>atan</keyword>
+					<keyword>cos</keyword>
+					<keyword>cosh</keyword>
+					<keyword>db</keyword>
+					<keyword>dc</keyword>
+					<keyword>dec</keyword>
+					<keyword>exp</keyword>
+					<keyword>int</keyword>
+					<keyword>lin</keyword>
+					<keyword>log</keyword>
+					<keyword>log10</keyword>
+					<keyword>lv</keyword>
+					<keyword>lx</keyword>
+					<keyword>max</keyword>
+					<keyword>min</keyword>
+					<keyword>oct</keyword>
+					<keyword>pow</keyword>
+					<keyword>pulse</keyword>
+					<keyword>pwl</keyword>
+					<keyword>pwr</keyword>
+					<keyword>sffm</keyword>
+					<keyword>sgn</keyword>
+					<keyword>sign</keyword>
+					<keyword>sin</keyword>
+					<keyword>sinh</keyword>
+					<keyword>sqrt</keyword>
+					<keyword>tan</keyword>
+					<keyword>tanh</keyword>
 				</context>
 			</include>
 		</context>
