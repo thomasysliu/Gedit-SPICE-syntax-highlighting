@@ -9,6 +9,12 @@ First line should be treated as a comment.
 .include models/test/BC550.mod
 
 
+** Comments
+* General SPICE.
+; PSpice
+$ ngspice
+
+
 ** Parameters
 .param TESTPARAM = 100e-3V
 .param TESTPARAM = 100mV
@@ -24,6 +30,7 @@ First line should be treated as a comment.
 ** Commands
 .AC lin 101 10Hz 200Hz
 .ac dec 50 1kHz 20kHz
+.ac oct 50 1kHz 20kHz
 .DC vin -10V 10V 500mV
 .dc vin -10V 10V 500mV
 .FOUR 1kHz v(output)
@@ -173,3 +180,4 @@ j3 v+ 1 0 2n5457  * The model name must start with a letter.
 X1 inv ninv out v+ v- LM324
 x1 inv ninv out v+ v- lm324
 
+.end
