@@ -1,6 +1,6 @@
 # Gedit SPICE Syntax Highlighting
 
-Gedit (GtkSourceView) syntax highlighting for SPICE files.
+SPICE (Simulation Program with Integrated Circuit Emphasis) syntax highlighting for Gedit (GtkSourceView).
 
 
 ## Installation
@@ -16,4 +16,13 @@ The appropriate directory to copy the `spice.lang` file depends on the version o
 ## Compatibility
 
 This language definition file uses version 2.0 of the format specification, so it should be compatible with both GTK+ 2 and GTK+ 3 GtkSourceView, but all the testing was done in Pluma 1.12.2 (GTK+ 2).
+
+
+## Supported Extensions
+
+The following extensions are supported by this syntax definition file, which includes definitions for SPICE, HSpice, Spectre, SpiceOpus, ngspice, gnucap and others.
+
+  * Models: `mdl`, `mod`
+  * Circuits: `sp`, `net`, `cir`, `ckt`, `cdl`, `scs`, `spi`
+  * Sub-circuits: `sub`
 
