@@ -2,6 +2,8 @@
 
 SPICE (Simulation Program with Integrated Circuit Emphasis) syntax highlighting for Gedit (GtkSourceView).
 
+![Screenshot](https://i.imgur.com/57BizGY.png)
+
 
 ## Installation
 
