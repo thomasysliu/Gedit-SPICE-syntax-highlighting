@@ -41,12 +41,12 @@
 
 				<!-- Values and Numbers -->
 				<context id="values" style-ref="constant">
-					<match>[ |\t][-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?(f|p|n|u|Meg|m|c|d|Hz|h|k|G|T)?(A|V|W|F|Hz|H|S|s|C)?</match>
+					<match>[ |\t][\(]?[-+]?((([0-9]+)\.?([0-9]+)([eE][-+]?[0-9]+)?[fpnumcdhkMegGTAVWFHzHSsC)]{0,3})|([0-9]+[fpnumcdhkMegGTAVWFHzHSsC)]{1,3}))</match>
 				</context>
 
 				<!-- Parameter Value -->
 				<context id="param-value" end-at-line-end="true" style-ref="string">
-					<start>("|'|{|\[|\()</start>
+					<start>(v|i)?("|'|{|\[|\()</start>
 					<end>("|'|}|\]|\))</end>
 
 					<include>
@@ -129,6 +129,7 @@
 				<!-- Functions -->
 				<context id="functions" style-ref="escaped-character">
 					<keyword>abs</keyword>
+					<keyword>ac</keyword>
 					<keyword>acos</keyword>
 					<keyword>asin</keyword>
 					<keyword>atan</keyword>
