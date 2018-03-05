@@ -77,6 +77,8 @@
 					<keyword>noise</keyword>
 					<keyword>tf</keyword>
 					<keyword>pz</keyword>
+					<keyword>print</keyword>
+					<keyword>plot</keyword>
 					<keyword>op</keyword>
 					<keyword>option</keyword>
 					<keyword>ends</keyword>
@@ -118,8 +120,6 @@
 					<keyword>include</keyword>
 					<keyword>lib</keyword>
 					<keyword>param</keyword>
-					<keyword>print</keyword>
-					<keyword>plot</keyword>
 					<keyword>probe</keyword>
 					<keyword>nodeset</keyword>
 					<keyword>ic</keyword>
