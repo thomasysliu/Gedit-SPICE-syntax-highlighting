@@ -1,0 +1,183 @@
+First line should be treated as a comment.
+
+** A test for SPICE syntax highlighting.
+** This is a comment with a URL: http://nathancampos.me/
+** Author: Nathan Campos <nathan@innoveworkshop.com>
+
+** Includes
+.include some_model.mod
+.include models/test/BC550.mod
+
+
+** Comments
+* General SPICE.
+; PSpice
+$ ngspice
+
+
+** Parameters
+.param TESTPARAM = 100e-3V
+.param TESTPARAM = 100mV
+.param TESTPARAM = 1V
+.param TESTPARAM = 1.5V
+.param TESTPARAM = '2 * 1.5V'
+.param TESTPARAM = "2 * 1.5V"
+.param TESTPARAM = { 2 * 1.5V }
+.param TESTPARAM = [ 2 * 1.5V ]
+.param TESTPARAM = ( 2 * 1.5V )
+
+
+** Commands
+.AC lin 101 10Hz 200Hz
+.ac dec 50 1kHz 20kHz
+.ac oct 50 1kHz 20kHz
+.DC vin -10V 10V 500mV
+.dc vin -10V 10V 500mV
+.FOUR 1kHz v(output)
+.four 1Meg v(input)
+.TRAN 1u 10m 0s
+.tran 1u 10m 0s
+.NOISE v(bias) Vbias
+.noise v(bias) Vbias
+.PROBE
+.probe v(input) v(output)
+.TEMP 0C 27C 125C
+.temp 0C 27C 125C
+.TF v(in) VINPUT
+.tf v(output) vout
+
+
+** Sources
+* Voltage
+V1 V+ 0 12V
+v1 v+ 0 12V
+VDC Vcc 0 DC 3.3V
+vdc vcc 0 dc 3.3V
+VAC 1 0 AC 120V
+vac 1 0 ac 120V
+Vinput input 0 SIN(500mV 1V 1k)
+vinput input 0 sin(500mV 1V 1k)
+
+* Current
+I1 V+ 0 12V
+i1 v+ 0 12V
+IDC Vcc 0 DC 3.3V
+idc vcc 0 dc 3.3V
+IAC 1 0 AC 120V
+iac 1 0 ac 120V
+Iinput input 0 SIN(500mV 1V 1k)
+iinput input 0 sin(500mV 1V 1k)
+
+* Voltage-Controlled Switch
+S1 1 0 ctrl+ ctrl- smod
+s1 1 0 ctrl+ ctrl- smod
+Spwr V+ Vcc ctrl+ ctrl- sPower
+spwr v+ vcc ctrl+ ctrl- spower
+
+* Input Sources
+EXP(0 2V 1ms 2ms 3ms 1 2)
+exp(0 2V 1ms 2ms 3ms 1 2)
+PULSE(10mV 5.2V 1ms 2ms 3ms 1 2)
+pulse(10mV 5.2V 1ms 2ms 3ms 1 2)
+PWL(1s 2mV 2s 1V 3s 100mV)
+pwl(1s 2mV 2s 1V 3s 100mV)
+SFFM(500mV 1V 1Meg 0.7 1kHz)
+sffm(500mV 1V 1Meg 0.7 1kHz)
+SIN(0.5V 1000mV 1kHz 0s 0.9 0)
+sin(0.5V 1000mV 1kHz 0s 0.9 0)
+
+
+** Passive Components
+* Resistors
+R1 1 2 1k
+r1 1 2 1k
+RV2 2 3 4.7k
+rv2 2 3 4.7k
+Rtest v+ v- 100k
+rtest v+ v- 100k
+Rp node1 node2 1Meg
+rp node1 node2 1Meg
+
+* Capacitors
+C1 1 2 0.1u
+c1 1 2 0.1u
+CP2 2 3 100n
+cp2 2 3 100n
+Ctest v+ v- 470uF
+ctest v+ v- 470uF
+Cx node1 node2 200F
+cx node1 node2 200F
+
+* Inductors
+L1 1 2 10p
+l1 1 2 10p
+Lc2 2 3 100n
+lc2 2 3 100n
+Ltest v+ v- 220u
+ltest v+ v- 220u
+Lx node1 node2 200mH
+Lx node1 node2 200mH
+
+* Coupled Inductors (Transformer)
+K1 L1 L2 0.9
+k1 l1 l2 0.9
+KTrans Lpri Lsec 0.85
+ktrans lpri lsec 0.85
+KT2 Lp1 Ls1 0.95
+kt2 lp1 ls1 0.95
+
+* Admittance
+Y1 1 2 10p
+y1 1 2 10p
+Yc2 2 3 100n
+yc2 2 3 100n
+Ytest v+ v- 220uS
+ytest v+ v- 220uS
+Yx node1 node2 200mS
+yx node1 node2 200mS
+
+* Transmission Line
+T1 1 2 3 4 Z0=50 F=5Meg NL=0.5
+t1 1 2 3 4 z0=50 f=5Meg nl=0.5
+
+
+** Active Devices
+* Diode
+D1 d1a d1k SB320
+d1 d1a d1k sb320
+Dp2 2 3 d1N4148
+dp2 2 3 d1n4148
+Dtest v+ v- 1n4007  * The model name must start with a letter.
+dtest v+ v- 1n4007  * The model name must start with a letter.
+
+* BJT Transistor
+Q1 q1c q1b q1e BC550
+q1 q1c q1b q1e bc550
+Qp2 v+ 1 0 Q2N2222
+qp2 v+ 1 0 q2n2222
+Q3 v+ 1 0 2N2222  * The model name must start with a letter.
+q3 v+ 1 0 2n2222  * The model name must start with a letter.
+
+* MOSFET
+M1 m1d m1g m1s m1b IRF520
+m1 m1d m1g m1s m1b irf520
+Mp2 v+ 1 0 0 M2N7000
+mp2 v+ 1 0 0 m2n7000
+M3 v+ 1 0 0 2N7000  * The model name must start with a letter.
+m3 v+ 1 0 0 2n7000  * The model name must start with a letter.
+
+* JFET
+J1 j1d j1g j1s MPF102
+j1 j1d j1g j1s mpf102
+Jp2 v+ 1 0 M2N5457
+jp2 v+ 1 0 m2n5457
+J3 v+ 1 0 2N5457  * The model name must start with a letter.
+j3 v+ 1 0 2n5457  * The model name must start with a letter.
+
+
+** Sub-Circuit
+* Call
+X1 inv ninv out v+ v- LM324
+x1 inv ninv out v+ v- lm324
+
+.end
