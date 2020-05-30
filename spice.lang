@@ -17,6 +17,7 @@
 		<style id="attribute-name" _name="Attribute name" map-to="def:identifier" />
 		<style id="number" _name="Number" map-to="def:number" />
 		<style id="constant" _name="Constant" map-to="def:preprocessor" />
+		<style id="net-address" _name="URL" map-to="def:underlined"/>
 	</styles>
 
 	<default-regex-options case-sensitive="false" />
@@ -34,7 +35,10 @@
 
 					<include>
 						<context id="net-address" style-ref="net-address" extend-parent="false">
-							<match>(http(s)?|ftp):\/\/[^\s]*</match>
+							<match>\%{def:net-address}</match>
+						</context>
+						<context id="email-address" style-ref="net-address" extend-parent="false">
+							<match>\%{def:email-address}</match>
 						</context>
 					</include>
 				</context>
