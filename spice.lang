@@ -79,6 +79,7 @@
 					<include>
 						<context ref="escaped-character"/>
 						<context ref="values" />
+						<context ref="attribute-name" />
 					</include>
 				</context>
 
@@ -89,6 +90,7 @@
 					<include>
 						<context ref="escaped-character"/>
 						<context ref="values" />
+						<context ref="attribute-name" />
 					</include>
 				</context>
 
@@ -99,6 +101,7 @@
 					<include>
 						<context ref="escaped-character"/>
 						<context ref="values" />
+						<context ref="attribute-name" />
 					</include>
 				</context>
 
@@ -109,6 +112,7 @@
 					<include>
 						<context ref="escaped-character"/>
 						<context ref="values" />
+						<context ref="attribute-name" />
 					</include>
 				</context>
 
