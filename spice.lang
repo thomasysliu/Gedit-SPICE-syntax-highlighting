@@ -119,6 +119,7 @@
 				<!-- Simulation Commands -->
 				<context id="sim-commands" style-ref="keyword">
 					<prefix>^\.</prefix>
+					<keyword>global</keyword>
 					<keyword>subckt</keyword>
 					<keyword>model</keyword>
 					<keyword>tran</keyword>
