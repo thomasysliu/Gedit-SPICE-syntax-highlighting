@@ -49,14 +49,64 @@
 				</context>
 				
 				<!-- Parameter Value -->
-				<context id="param-value" end-at-line-end="true" style-ref="string">
-					<start>(v|i)?("|'|{|\[|&lt;|\()</start>
-					<end>("|'|}|\]|&gt;|\))</end>
+				<context id="param-value1" end-at-line-end="true" style-ref="string">
+					<start>"</start>
+					<end>"</end>
 
 					<include>
 						<context id="escaped-character" style-ref="escaped-character">
 							<match>\\.</match>
 						</context>
+						<context ref="values" />
+					</include>
+				</context>
+
+				<context id="param-value2" end-at-line-end="true" style-ref="string">
+					<start>'</start>
+					<end>'</end>
+
+					<include>
+						<context ref="escaped-character"/>
+						<context ref="values" />
+					</include>
+				</context>
+
+				<context id="param-value3" end-at-line-end="true" style-ref="string">
+					<start>{</start>
+					<end>}</end>
+
+					<include>
+						<context ref="escaped-character"/>
+						<context ref="values" />
+					</include>
+				</context>
+
+				<context id="param-value4" end-at-line-end="true" style-ref="string">
+					<start>&lt;</start>
+					<end>&gt;</end>
+
+					<include>
+						<context ref="escaped-character"/>
+						<context ref="values" />
+					</include>
+				</context>
+
+				<context id="param-value5" end-at-line-end="true" style-ref="string">
+					<start>\(</start>
+					<end>\)</end>
+
+					<include>
+						<context ref="escaped-character"/>
+						<context ref="values" />
+					</include>
+				</context>
+
+				<context id="param-value6" end-at-line-end="true" style-ref="string">
+					<start>\[</start>
+					<end>\]</end>
+
+					<include>
+						<context ref="escaped-character"/>
 						<context ref="values" />
 					</include>
 				</context>
