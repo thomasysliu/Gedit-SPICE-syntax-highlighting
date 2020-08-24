@@ -162,6 +162,10 @@
 				<context id="sources" style-ref="type">
 					<keyword>^v\w*</keyword>
 					<keyword>^i\w*</keyword>
+					<keyword>^e\w*</keyword><!-- VCVS -->
+					<keyword>^f\w*</keyword><!-- CCCS -->
+					<keyword>^g\w*</keyword><!-- VCCS -->
+					<keyword>^h\w*</keyword><!-- CCVS -->
 				</context>
 				
 				<!-- Switch Source (had to be separated because of conflicts with sin and sffm. -->
