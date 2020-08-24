@@ -99,10 +99,14 @@
 				</context>
 
 				<context id="param-value5" end-at-line-end="true" style-ref="string">
-					<start>\(</start>
+					<start>(v|i)?\(</start>
 					<end>\)</end>
 
 					<include>
+						<context id="line-continue" style-ref="preprocessor">
+							<start>$</start>
+							<end>^\+</end>
+						</context>
 						<context ref="escaped-character"/>
 						<context ref="values" />
 						<context ref="attribute-name" />
