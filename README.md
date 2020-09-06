@@ -30,3 +30,14 @@ The following extensions are supported by this syntax definition file, which inc
   * Circuits: `sp`, `net`, `cir`, `ckt`, `cdl`, `scs`, `spi`
   * Sub-circuits: `sub`
 
+## Known Issue
+
+For gedit 2.28.4, remove `class="no-spell-check"` in `id="attribute-name"`
+change
+```xml
+<context id="attribute-name" style-ref="attribute-name" class="no-spell-check">
+```
+to
+```xml
+<context id="attribute-name" style-ref="attribute-name">
+```
